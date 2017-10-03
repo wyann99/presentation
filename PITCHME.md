@@ -24,7 +24,7 @@ days := [...]string{"Sat", "Sun"} //len(days) == 2
 ---
 # Slice
 Reference to a part of array
-* ```C
+```C
   // $GOROOT/src/pkg/runtime/runtime.h
   struct Slice
   {    // must not move anything
@@ -32,18 +32,34 @@ Reference to a part of array
     uintgo    len;        // number of elements
     uintgo    cap;        // allocated number of elements
   };
-  ```
-  |
-* ![Slice Diagram](assets/slice.png)
----
-# Slice
-* ```go
+```
+```go
   var s1 []int
   var s2 = make([]int, 10)
   var s3 = make([]int, 10, 20)
   fmt.Printf("len:%d, cap:%d\n", len(s1), cap(s1))
   fmt.Printf("len:%d, cap:%d\n", len(s2), cap(s2))
   fmt.Printf("len:%d, cap:%d\n", len(s3), cap(s3))
-  ```
-  ---
-  #
+```
+![Logo](assets/slice.png)
+
+---
+
+# Slice Append
+```go
+	array := [3]int{10,20,30}
+	s := array[:]
+	fmt.Printf("slice value: %v, array value: %v \n", s, array)
+	s2 := append(s, 40)
+	fmt.Printf("slice value: %v, array value: %v \n", s2, array)
+
+	s = array[:2]
+	fmt.Printf("slice value: %v, array value: %v \n", s, array)
+	s2 = append(s, 40)
+	fmt.Printf("slice value: %v, array value: %v \n", s2, array)
+```
+@[1-5]
+@[7-10]
+
+---
+# String
