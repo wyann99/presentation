@@ -21,19 +21,19 @@ var buffer [256]byte
 intSet := [6]int{1, 2, 3, 5}
 days := [...]string{"Sat", "Sun"} //len(days) == 2
 ```
+---?image=assets/slice.png
+
+Note:
+Slice include a pointer, length and capacity
 ---
 # Slice
 Reference to a part of array
-```C
-  // $GOROOT/src/pkg/runtime/runtime.h
-  struct Slice
-  {    // must not move anything
-    byte*    array;        // actual data
-    uintgo    len;        // number of elements
-    uintgo    cap;        // allocated number of elements
-  };
-```
 ```go
+type SliceHeader struct {
+        Data uintptr
+        Len  int
+        Cap  int
+}
   var s1 []int
   var s2 = make([]int, 10)
   var s3 = make([]int, 10, 20)
@@ -41,7 +41,8 @@ Reference to a part of array
   fmt.Printf("len:%d, cap:%d\n", len(s2), cap(s2))
   fmt.Printf("len:%d, cap:%d\n", len(s3), cap(s3))
 ```
-![Logo](assets/slice.png)
+@[1-5]
+@[6-11]
 
 ---
 
@@ -58,8 +59,21 @@ Reference to a part of array
 	s2 = append(s, 40)
 	fmt.Printf("slice value: %v, array value: %v \n", s2, array)
 ```
-@[1-5]
-@[7-10]
+@[1-5](Append will create a new array and append value to the end)
+@[7-10](Append will modify the existing array)
 
 ---
 # String
+```go
+type StringHeader struct {
+        Data uintptr
+        Len  int
+}
+s := "hello world"
+b := []byte(s)
+s = string(b)
+```
+@[1-4](String structure, Compare to slice, string has no cap)
+@[5-7](Convertion between string and byte[])
+Note:
+Notice string invariant
