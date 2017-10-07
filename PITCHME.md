@@ -21,7 +21,7 @@ var buffer [256]byte
 intSet := [6]int{1, 2, 3, 5}
 days := [...]string{"Sat", "Sun"} //len(days) == 2
 ```
----?image=assets/slice.png
+---?image=assets/slice.png&size=auto 50%
 
 Note:
 Slice include a pointer, length and capacity
@@ -72,8 +72,182 @@ type StringHeader struct {
 s := "hello world"
 b := []byte(s)
 s = string(b)
+s = "你好"
+fmt.Println(s[0]) //228
+fmt.Println([]rune(s)[0]) //20320
+fmt.Println(string([]rune(s)[0])) //你
 ```
 @[1-4](String structure, Compare to slice, string has no cap)
 @[5-7](Convertion between string and byte[])
+@[8-11](Get a Unicode charactor from string)
 Note:
-Notice string invariant
+String is immutable in GO. So conversion from byte to string and string concatenation need copy the whole byte[].
+---
+# Map
+- Reference type|
+```go
+var m map[string]int
+m = make(map[string]int)
+```
+@1(nil Map)
+@2(Initialized map)
+- Concurrency|
+Maps are not safe for concurrent use, use sync.Map instead
+```go
+m := sync.Map{}
+m.Store("x", 1)
+x, _ := m.Load("x")
+```
+---
+# Pointer
+- Consider as C pointer
+```go
+x := 10
+p := &x
+var pp **int = &p
+fmt.Printf("%d\n", **pp)
+```
+- Default value is nil
+---
+# Memory allocation
+- When possible, the Go compilers will allocate variables that are local to a function in that function's stack frame.
+```go
+type MyType struct {
+	Value string
+}
+func foo(){
+	m := MyType{}
+	fmt.Println(m.Value)
+}
+func foo2(){
+	m := new(MyType)
+	fmt.Println(m.Value)
+}
+func foo3(){
+	m := new(MyType{Value: "Big string"})
+	fmt.Println(m.Value)
+}
+```
+@[1-7]
+@[8-11]
+@[12-15]
+- Avoid Pointer that escape function|
+```go
+func getIntPtr() *int {
+        var res int = 10
+        return &res //Compiler will allocate res in Heap because of escape
+}
+func getIntPtr(res *int) *int {
+        *res = 10
+        return &res //No memory allocation
+}
+```
+@[1-4](Go has to allocate res in Heap, which lead to more GC pressure)
+@[5-8](Recommended way)
+---
+# Interface
+## Duck typing
+> if it looks like a duck and quacks like a duck, it’s a duck
+![Logo](assets/duck.jpg)
+```go
+type Duck interface {
+  Quack()
+}
+type Donald struct{}
+func (d Donald) Quack(){
+  fmt.Println("Quack quack!")
+}
+func sayQuack(duck Duck){
+  duck.Quack()
+}
+```
+@[1-3]
+@[4-7]
+@[8-10]
+## Implicitly vs Explicitly
+- Cheap
+- Lazy abstraction
+---
+# Buildin Interface
+- Error|
+```go
+type error interface {
+    Error() string
+}
+errors.New("Something goes wrong")
+fmt.Errorf("Error occured while we have computed something: %v", err)
+```
+@[1-3]
+@[4-5]
+
+- io.Reader|
+
+```go
+type Reader interface {
+        Read(p []byte) (n int, err error)
+}
+func ReadAll(r io.Reader) ([]byte, error)
+r := strings.NewReader("Go is a general-purpose language designed with systems programming in mind.")
+b, err := ioutil.ReadAll(r)
+```
+@[1-4]
+@[5-6]
+---
+# Buildin Interface (cont)
+## sort.Interface
+```go
+type Interface interface {
+        Len() int
+        Less(i, j int) bool
+        Swap(i, j int)
+}
+type IntSlice []int
+func (p IntSlice) Len() int           { return len(p) }
+func (p IntSlice) Less(i, j int) bool { return p[i] < p[j] }
+func (p IntSlice) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+s := []int{5, 2, 6, 3, 1, 4} // unsorted
+sort.Sort(sort.Reverse(sort.IntSlice(s)))
+```
+@[1-5]
+@[6-9]
+@[10-11]
+
+---
+# Channel
+```go
+func sumAll(s []int) int{
+  c := make(chan int)  
+  go sum(s[:len(s)/2], c)
+  go sum(s[len(s)/2:], c)
+  return <-c + <-c // receive from c
+}
+func sum(s []int, c chan int) {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	c <- sum // send sum to c
+}
+```
+---
+# Channel Implementation
+```go
+type hchan struct {
+    qcount   uint           // 队列中数据个数
+    dataqsiz uint           // channel 大小
+    buf      unsafe.Pointer // 存放数据的环形数组
+    elemsize uint16         // channel 中数据类型的大小
+    closed   uint32         // 表示 channel 是否关闭
+    elemtype *_type // 元素数据类型
+    sendx    uint   // send 的数组索引
+    recvx    uint   // recv 的数组索引
+    recvq    waitq  // 由 recv 行为（也就是 <-ch）阻塞在 channel 上的 goroutine 队列
+    sendq    waitq  // 由 send 行为 (也就是 ch<-) 阻塞在 channel 上的 goroutine 队列
+    lock mutex
+}
+type waitq struct {
+    first *sudog
+    last  *sudog
+}
+```
+![Channel](assets/channel.png)
