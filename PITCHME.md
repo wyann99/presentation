@@ -93,13 +93,12 @@ m = make(map[string]int)
 ```
 @[1](nil Map)
 @[2](Initialized map)
-- Concurrency|
+- sync.Map|
 ```go
 m := sync.Map{}
 m.Store("x", 1)
 x, _ := m.Load("x")
 ```
-@[](Maps are not safe for concurrent use, use sync.Map instead)
 ---
 # Pointer
 - Consider as C pointer
@@ -174,11 +173,6 @@ type error interface {
 }
 errors.New("Something goes wrong")
 fmt.Errorf("Error occured while we have computed something: %v", err)
-```
-@[1-3]
-@[4-5]
-
-```go
 //io.Reader
 type Reader interface {
         Read(p []byte) (n int, err error)
@@ -187,8 +181,10 @@ func ReadAll(r io.Reader) ([]byte, error)
 r := strings.NewReader("Go is a general-purpose language designed with systems programming in mind.")
 b, err := ioutil.ReadAll(r)
 ```
-@[1-4]
-@[5-6]
+@[1-3]
+@[4-5]
+@[6-9]
+@[10-12]
 ---
 # Buildin Interface
 ```go
@@ -209,8 +205,12 @@ sort.Sort(sort.Reverse(sort.IntSlice(s)))
 @[6-9]
 @[10-11]
 ---
-# Rely on Abstraction, not Implementation
+# Separate Interface and Implementation
 ```go
+type Copyable interface {
+	Copy() interface{}
+}
+func (v Value) Copy() Value {return v}
 func returnsError() error {
   var p *MyError = nil
   return p
@@ -221,13 +221,9 @@ func main(){
     fmt.Println("error found")
   }
 }
-type Copyable interface {
-	Copy() interface{}
-}
-func (v Value) Copy() Value {return v}
 ```
-@[1-10]
-@[11-14]
+@[1-4]
+@[5-14]
 ---
 # Channel
 Message queue for communication
