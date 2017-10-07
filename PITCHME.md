@@ -11,7 +11,9 @@ Dong Bin
 * Slice
 * String
 * Map
+* Pointer
 * Interface
+* Channel
 
 ---
 # Array
@@ -92,12 +94,12 @@ m = make(map[string]int)
 @[1](nil Map)
 @[2](Initialized map)
 - Concurrency|
-Maps are not safe for concurrent use, use sync.Map instead
 ```go
 m := sync.Map{}
 m.Store("x", 1)
 x, _ := m.Load("x")
 ```
+@[](Maps are not safe for concurrent use, use sync.Map instead)
 ---
 # Pointer
 - Consider as C pointer
@@ -107,7 +109,9 @@ p := &x
 var pp **int = &p
 fmt.Printf("%d\n", **pp)
 ```
-- Default value is nil
+- Pass by pointer vs pass by value|
+  - Pointer for big struct|
+  - Pointer for modify|
 ---
 # Memory allocation
 ```go
@@ -125,26 +129,26 @@ func foo2(){
 ```
 @[1-7]
 @[8-11]
-@[12-15](When possible, the Go compilers will allocate variables that are local to a function in that function's stack frame.)
+@[](When possible, the Go compilers will allocate variables that are local to a function in that function's stack frame.)
 ---
-# Avoid Pointer which escape function
+# Escape Analysis
+The basic rule is that if a reference to a variable is returned from the function where it is declared
 ```go
-func getIntPtr() *int {
-        var res int = 10
-        return &res //Compiler will allocate res in Heap because of escape
-}
-func getIntPtr(res *int) *int {
-        *res = 10
-        return &res //No memory allocation
-}
+type S struct {M *int}
+func foo(z S) S {return z}
+func foo2(z *S) *S {return z}
+func foo3(z S) *S {return &z}
+func foo4(y int) S {return S{M: &y}}
+func foo4(y *int) S {return S{M: y}}
 ```
-@[1-4](Go has to allocate res in Heap, which lead to more GC)
-@[5-8](Recommend)
+@[1-2] foo declare no reference
+@[3] foo2 declare no reference
+@[4] foo3 declare &z and return, so called Escape
+@[5] foo4 declare &y and &y is assigned to S and S returned, y must escape
+@[6] foo5 declare no reference
 ---
-# Interface
-## Duck typing
+## Interface is Duck typing
 > if it looks like a duck and quacks like a duck, it’s a duck
-![Logo](assets/duck.jpg&size=auto 20%)
 ```go
 type Duck interface {
   Quack()
@@ -160,9 +164,8 @@ func sayQuack(duck Duck){
 @[1-3]
 @[4-7]
 @[8-10]
-## Implicitly vs Explicitly
-- Cheap
-- Lazy abstraction
+Note: Implicitly vs Explicitly, Cheap, Lazy abstraction
+
 ---
 # Buildin Interface
 ```go
@@ -205,7 +208,26 @@ sort.Sort(sort.Reverse(sort.IntSlice(s)))
 @[1-5]
 @[6-9]
 @[10-11]
-
+---
+# Rely on Abstraction, not Implementation
+```go
+func returnsError() error {
+  var p *MyError = nil
+  return p
+}
+func main(){
+  err := returnsError()
+  if err != nil {
+    fmt.Println("error found")
+  }
+}
+type Copyable interface {
+	Copy() interface{}
+}
+func (v Value) Copy() Value {return v}
+```
+@[1-10]
+@[11-14]
 ---
 # Channel
 Message queue for communication
@@ -246,3 +268,6 @@ type waitq struct {
 }
 ```
 ![Channel](assets/channel.png)
+
+---
+# Mutex or Channel?
