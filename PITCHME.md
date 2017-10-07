@@ -138,7 +138,7 @@ func foo(z S) S {return z}
 func foo2(z *S) *S {return z}
 func foo3(z S) *S {return &z}
 func foo4(y int) S {return S{M: &y}}
-func foo4(y *int) S {return S{M: y}}
+func foo5(y *int) S {return S{M: y}}
 ```
 @[1-2] foo declare no reference
 @[3] foo2 declare no reference
@@ -201,11 +201,11 @@ func (p IntSlice) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
 s := []int{5, 2, 6, 3, 1, 4} // unsorted
 sort.Sort(sort.Reverse(sort.IntSlice(s)))
 ```
-@[1-5]
-@[6-9]
-@[10-11]
+@[1-6] Any collection can be sort if implement
+@[7-10] Buildin type slice has implement it
+@[11-12]
 ---
-# Separate Interface and Implementation
+# Static Interface
 ```go
 type Copyable interface {
 	Copy() interface{}
@@ -222,8 +222,8 @@ func main(){
   }
 }
 ```
-@[1-4]
-@[5-14]
+@[1-4] Value and interface{} are different type, so no satisfy
+@[5-14] error == nil only if error.Type == nil and error.Value == nil
 ---
 # Channel
 Message queue for communication
@@ -266,4 +266,4 @@ type waitq struct {
 ![Channel](assets/channel.png)
 
 ---
-# Mutex or Channel?
+# Q&A
