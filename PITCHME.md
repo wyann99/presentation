@@ -159,11 +159,15 @@ func (d Donald) Quack(){
 func sayQuack(duck Duck){
   duck.Quack()
 }
+func main() {
+  donald := &Donald{}
+  sayQuack(donald)
+}
 ```
 @[1-3]
 @[4-7]
-@[8-10]
-Note: Implicitly vs Explicitly, Cheap, Lazy abstraction
+@[8-14]
+Note: Interface contain pointer to Type and Value. Implicitly vs Explicitly, Cheap, Lazy abstraction
 
 ---
 # Buildin Interface
