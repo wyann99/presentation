@@ -77,20 +77,20 @@ fmt.Println(s[0]) //228
 fmt.Println([]rune(s)[0]) //20320
 fmt.Println(string([]rune(s)[0])) //你
 ```
-@[1-4](String structure, Compare to slice, string has no cap)
+@[1-4](Compare to slice, string has no cap)
 @[5-7](Convertion between string and byte[])
 @[8-11](Get a Unicode charactor from string)
 Note:
 String is immutable in GO. So conversion from byte to string and string concatenation need copy the whole byte[].
 ---
 # Map
-- Reference type|
+- Reference type
 ```go
 var m map[string]int
 m = make(map[string]int)
 ```
-@1(nil Map)
-@2(Initialized map)
+@[1](nil Map)
+@[2](Initialized map)
 - Concurrency|
 Maps are not safe for concurrent use, use sync.Map instead
 ```go
@@ -110,7 +110,6 @@ fmt.Printf("%d\n", **pp)
 - Default value is nil
 ---
 # Memory allocation
-- When possible, the Go compilers will allocate variables that are local to a function in that function's stack frame.
 ```go
 type MyType struct {
 	Value string
@@ -123,15 +122,12 @@ func foo2(){
 	m := new(MyType)
 	fmt.Println(m.Value)
 }
-func foo3(){
-	m := new(MyType{Value: "Big string"})
-	fmt.Println(m.Value)
-}
 ```
 @[1-7]
 @[8-11]
-@[12-15]
-- Avoid Pointer that escape function|
+@[12-15](When possible, the Go compilers will allocate variables that are local to a function in that function's stack frame.)
+---
+# Avoid Pointer which escape function
 ```go
 func getIntPtr() *int {
         var res int = 10
@@ -142,13 +138,13 @@ func getIntPtr(res *int) *int {
         return &res //No memory allocation
 }
 ```
-@[1-4](Go has to allocate res in Heap, which lead to more GC pressure)
-@[5-8](Recommended way)
+@[1-4](Go has to allocate res in Heap, which lead to more GC)
+@[5-8](Recommend)
 ---
 # Interface
 ## Duck typing
 > if it looks like a duck and quacks like a duck, it’s a duck
-![Logo](assets/duck.jpg)
+![Logo](assets/duck.jpg&size=auto 20%)
 ```go
 type Duck interface {
   Quack()
@@ -169,7 +165,6 @@ func sayQuack(duck Duck){
 - Lazy abstraction
 ---
 # Buildin Interface
-- Error|
 ```go
 type error interface {
     Error() string
@@ -180,9 +175,8 @@ fmt.Errorf("Error occured while we have computed something: %v", err)
 @[1-3]
 @[4-5]
 
-- io.Reader|
-
 ```go
+//io.Reader
 type Reader interface {
         Read(p []byte) (n int, err error)
 }
@@ -193,9 +187,9 @@ b, err := ioutil.ReadAll(r)
 @[1-4]
 @[5-6]
 ---
-# Buildin Interface (cont)
-## sort.Interface
+# Buildin Interface
 ```go
+//sort.Interface
 type Interface interface {
         Len() int
         Less(i, j int) bool
@@ -214,6 +208,7 @@ sort.Sort(sort.Reverse(sort.IntSlice(s)))
 
 ---
 # Channel
+Message queue for communication
 ```go
 func sumAll(s []int) int{
   c := make(chan int)  
@@ -230,7 +225,7 @@ func sum(s []int, c chan int) {
 }
 ```
 ---
-# Channel Implementation
+## Channel Implementation
 ```go
 type hchan struct {
     qcount   uint           // 队列中数据个数
