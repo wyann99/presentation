@@ -5,7 +5,22 @@ Dong Bin
 ![Logo](assets/golang-logo.png)
 ---
 # GO code validation
-- Code validation -- gometalinter
+- go vet - Reports potential errors that otherwise compile.
+- go tool vet --shadow - Reports variables that may have been unintentionally shadowed.
+- gotype - Syntactic and semantic analysis similar to the Go compiler.
+- deadcode - Finds unused code.
+- golint - Google's (mostly stylistic) linter.
+- varcheck - Find unused global variables and constants.
+- structcheck - Find unused struct fields.
+- maligned - Detect structs that would take less memory if their fields were sorted.
+- errcheck - Check that error return values are used.
+- megacheck - Run staticcheck, gosimple and unused, sharing work.
+- dupl - Reports potentially duplicated code.
+- ineffassign - Detect when assignments to existing variables are not used.
+- interfacer - Suggest narrower interfaces that can be used.
+- unconvert - Detect redundant type conversions.
+- goconst - Finds repeated strings that could be replaced by a constant.
+- gas - Inspects source code for security problems by scanning the Go AST.
 ---
 # Docker
 - Medusa
