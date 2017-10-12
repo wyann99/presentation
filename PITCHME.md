@@ -103,5 +103,6 @@ func (s *CreatorService) Create(ctx context.Context, assignmentInfoRequest *assi
 }
 assignment.RegisterCreatorServer(grpcServer, &assignmentsrv.CreatorService{})
 ```
-----
+---
+
 # Q&A
