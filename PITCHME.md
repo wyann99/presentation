@@ -79,7 +79,9 @@ message AssignmentInfoRequest {
 ```
 ---
 # Grpc
-![grpc](assets/grpc.jgp)
+![grpc](assets/grpc.jpg)
+---
+# Grpc demo
 ```go
 // Create 创建任务的接口
 func (s *CreatorService) Create(ctx context.Context, assignmentInfoRequest *assignment.AssignmentInfoRequest) (*empty.Empty, error) {
