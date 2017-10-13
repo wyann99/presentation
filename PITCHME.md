@@ -283,6 +283,13 @@ func f() (result int) {
     }()
     return 0
 }
+func f() (r int) {
+     t := 5
+     defer func() {
+       t = t + 5
+     }()
+     return t
+}
 ```
 - Sequence|
   - Assign return variable
