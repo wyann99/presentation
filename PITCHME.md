@@ -14,6 +14,7 @@ Dong Bin
 * Pointer
 * Interface
 * Channel
+* Defer
 
 ---
 # Array
@@ -23,7 +24,7 @@ var buffer [256]byte
 intSet := [6]int{1, 2, 3, 5}
 days := [...]string{"Sat", "Sun"} //len(days) == 2
 ```
----?image=assets/slice.png&size=auto 50%
+---
 
 Note:
 Slice include a pointer, length and capacity
@@ -111,6 +112,9 @@ fmt.Printf("%d\n", **pp)
 - Pass by pointer vs pass by value|
   - Pointer for big struct|
   - Pointer for modify|
+- Buildin Reference Types
+map slice channel interface
+- Nil|
 ---
 # Memory allocation
 ```go
@@ -269,5 +273,20 @@ type waitq struct {
 ```
 ![Channel](assets/channel.png)
 
+---
+# Defer
+- Example
+```go
+func f() (result int) {
+    defer func() {
+        result++
+    }()
+    return 0
+}
+```
+- Sequence|
+  - Assign return variable
+  - call Defer
+  - return
 ---
 # Q&A
