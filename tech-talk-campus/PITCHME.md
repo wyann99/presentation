@@ -2,7 +2,7 @@
 Dong Bin
 ---
 # About Me
-- Graduate from Harbin Institute of Technology
+- 2004 Graduate from Harbin Institute of Technology
 - 2004~2007 IBM CDL
 - 2008~2011 Freewheel Inc.
 - 2011~2015 Kabam Inc.
@@ -26,7 +26,7 @@ Dong Bin
 # Seek the best way
 - It is an engineer character to pursue excellence|
 - Avoid debt |
-- It is your identity!
+- It is your identity!|
 
 ---
 # Write Readable Code
@@ -48,8 +48,8 @@ Dong Bin
 
 ---
 # Search the Internet Effectively
-- VPN|
+- Buy VPN|
 - Google|
-- English
+- Use English|
 ---
 # Q&A
