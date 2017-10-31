@@ -24,9 +24,9 @@ Dong Bin
 
 ---
 # Seek the best way
-- It is an engineer character to pursue excellence|
-- Avoid debt |
-- It is your identity!|
+- Build craftsmanship to pursue excellence|
+- It is a debt unless you choose the best solution |
+- Distinguish yourself from others|
 
 ---
 # Write Readable Code
