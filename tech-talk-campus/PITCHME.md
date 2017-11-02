@@ -7,6 +7,7 @@ Dong Bin
 - 2008~2011 Freewheel Inc.
 - 2011~2015 Kabam Inc.
 - 2015~2017 LinkedIn
+- 2017-7~Now 瓜子
 ---
 # Why programmer is an amazing job
 - We build stuff|
