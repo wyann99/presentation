@@ -1,5 +1,5 @@
-# Advices to Young Programmers
-###Dong Bin
+# Advices to Young Programmer
+## Dong Bin
 ---
 ## About Me
 - 2004 Graduate from Harbin Institute of Technology
