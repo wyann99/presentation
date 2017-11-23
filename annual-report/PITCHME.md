@@ -4,6 +4,7 @@
 ## About Me
 Architect of engineering, focus on:
 - Lead tech design and decision
+- Tackle challenge and risks of product development 
 - Coach team members for tech skills
 - Design review and requirements estimation
 - Lead members to build tech infrastructure
