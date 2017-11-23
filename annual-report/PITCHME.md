@@ -74,7 +74,7 @@ Architect of engineering, focus on:
 ---
 # Next Play at Finance
 ---
-## Dec
+## December
 - Improve existing code quality
 - Enhance development process
 - Setup new infrastructure for 2.0
