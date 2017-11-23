@@ -36,9 +36,9 @@ Architect of engineering, focus on:
 - Fresh new tech stack for better efficiency and performance
 ---
 ## Achievement
-- The end of Aug, kick off CRM 2.0 for sale department
+- The end of Aug, kickoff CRM 2.0 for sale department
 - The end of Sep, first round of QA
-- Oct 17, kick off after-sale service center based on CRM 2.0
+- Oct 17, kickoff after-sale service center based on CRM 2.0
 - Oct 21, first preview launch for sale
 - Nov 20, full launch for sale
 - Nov 21, preview launch for after-sale
@@ -78,6 +78,7 @@ Architect of engineering, focus on:
 - Improve existing code quality
 - Enhance development process
 - Setup new infrastructure for 2.0
+- Finance 2.0 Kickoff
 ---
 # Q1
 ### Finance 2.0
