@@ -60,10 +60,34 @@ Architect of engineering, focus on:
 - Strict schema log
 - Sink to Hadoop directly for easy query and operate
 - Enhanced feature like realtime report and alerting
----
-## Next Play at Finance
-- Improve stability and robust
-- Build new BI Data infrastructure
-- Separate system into Micro-services
 
+---
+# Next Play at Finance
+---
+## Dec
+- Improve existing code quality
+- Enhance development process
+- Setup new infrastructure for 2.0
+---
+# Q1
+### Finance 2.0
+- Extract micro services, e.g, application, credit audit，loan lifecycle
+- Build a stable and robust infrastructure
+- Setup monitoring pipeline
+- Setup new data infrastructure
+- Extensible to plug more banks in
+
+---
+## Challenge
+- Engineering improvements fall behind in business progress
+- Application engineers were not aware of how to building data, which make data analysis painful
+- Tech legacy and debt for historical reasons
+- Lack of Unit Test
+---
+## Solution
+- Training and coach members to accelerate team growth
+- Cultivate tech lead to take charge of details
+- Work out the unified application framework including best practice
+- Build data development guide line, e.g, log schema, aggregation framework
+---
 # Q&A
