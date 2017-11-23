@@ -35,9 +35,9 @@ Architect of engineering, focus on:
 - Fresh new tech stack for better efficiency and performance
 ---
 ## Achievement
-- The end of Aug, CRM 2.0 kick off for sale department
-- The end of Sep, core function delivered to QA
-- Oct 17, new after-sale service center based on CRM 2.0 kick off
+- The end of Aug, kick off CRM 2.0 for sale department
+- The end of Sep, first round of QA
+- Oct 17, kick off after-sale service center based on CRM 2.0
 - Oct 21, first preview launch for sale
 - Nov 20, full launch for sale
 - Nov 21, preview launch for after-sale
@@ -51,19 +51,25 @@ Architect of engineering, focus on:
 ---
 ## Task List
 ![Clue List](annual-report/assets/cluelist.png)
-
 ---
-## BI Log Pipeline Background
-- Most of business log are collected in Mysql tables
-- Painful to operate and query big data
-- Lack of enough BI log
+# BI Log Automation
+---
+## Background
+- Painful to query business data
+- Costly to collect business log
+- Too much engineers effort for generating comprehensive report
 
 ---
 ## New BI Log Pipeline
-- Strict schema log
+- Automation collection for Comprehensive BI log
 - Sink to Hadoop directly for easy query and operate
 - Enhanced feature like realtime report and alerting
-
+---
+## Schedule
+- Nov, Kickoff by CRM 2.0 and Data Platform team
+- End of Nov, Launch for call center log and BI report
+- Dec, Launch for Guazi App
+- 18-Q1, Launch for Finance products
 ---
 # Next Play at Finance
 ---
@@ -85,12 +91,13 @@ Architect of engineering, focus on:
 - Engineering improvements fall behind in business progress
 - Application engineers were not aware of how to building data, which make data analysis painful
 - Tech legacy and debt for historical reasons
-- Lack of Unit Test
+- Mannual QA process
 ---
 ## Solution
 - Train and coach members
 - Cultivate tech lead to take charge of details
 - Work out the unified application framework including best practice
 - Build data development guide line, e.g, log schema, aggregation framework
+- Allocate resource on test automation
 ---
 # Q&A
