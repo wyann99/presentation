@@ -4,9 +4,9 @@
 ## About Me
 Architect of engineering, focus on:
 - Lead tech design and decision
-- Couch team members
-- Review project development and implementation
-- Build and improve tech infrastructure
+- Coach team members for tech skills
+- Design review and requirements estimation
+- Lead members to build tech infrastructure
 ---
 ## Background
 - 2004 Graduate from Harbin Institute of Technology, Major of Computer Science
@@ -89,9 +89,9 @@ Architect of engineering, focus on:
 ---
 ## Challenge
 - Engineering improvements fall behind in business progress
-- Application engineers were not aware of how to building data, which make data analysis painful
+- Application engineers were not aware of how to building data for business analysis
 - Tech legacy and debt for historical reasons
-- Mannual QA process
+- Manual QA process, hard for rapid iteration
 ---
 ## Solution
 - Train and coach members
