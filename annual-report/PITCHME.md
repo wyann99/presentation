@@ -43,11 +43,14 @@ Architect of engineering, focus on:
 - Nov 21, preview launch for after-sale
 
 ---
-![Console](assets/console.png)
+## Console
+![Console](annual-report/assets/console.png)
 ---
-![Recommendation](assets/recommendation.png)
+## Car Recommendation
+![Recommendation](annual-report/assets/recommendation.png)
 ---
-![Clue List](assets/cluelist.png)
+## Task List
+![Clue List](annual-report/assets/cluelist.png)
 
 ---
 ## BI Log Pipeline Background
@@ -85,7 +88,7 @@ Architect of engineering, focus on:
 - Lack of Unit Test
 ---
 ## Solution
-- Training and coach members to accelerate team growth
+- Train and coach members
 - Cultivate tech lead to take charge of details
 - Work out the unified application framework including best practice
 - Build data development guide line, e.g, log schema, aggregation framework
