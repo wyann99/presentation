@@ -4,7 +4,7 @@
 ## About Me
 Architect of engineering, focus on:
 - Lead tech design and decision
-- Tackle challenge and risks of product development 
+- Tackle challenge and risks of product development
 - Coach team members for tech skills
 - Design review and requirements estimation
 - Lead members to build tech infrastructure
@@ -62,9 +62,9 @@ Architect of engineering, focus on:
 
 ---
 ## New BI Log Pipeline
-- Automation collection for Comprehensive BI log
+- Automated collection for Comprehensive BI log
 - Sink to Hadoop directly for easy query and operate
-- Enhanced feature like realtime report and alerting
+- Enhanced data like realtime report and business monitoring
 ---
 ## Schedule
 - Nov, Kickoff by CRM 2.0 and Data Platform team
