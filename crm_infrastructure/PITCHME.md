@@ -23,6 +23,7 @@ Dong Bin
 - ETCD
 - BI Log pipeline
 - Async Job
+- Some useful tools
 
 ---
 ## Docker cloud
@@ -68,10 +69,30 @@ message AssignmentInfoResponse {
 
 Document: http://call-center-proto.guazi-cloud.com/#assignment.AssignmentInfo
 ---
+## Service code example
+```go
+// InfoService 任务信息服务
+type InfoService struct{}
+
+// Get 获取任务信息接口
+func (s *InfoService) Get(ctx context.Context, assignmentIDRequest *assignment.AssignmentIDRequest) (*assignment.AssignmentInfoResponse, error) {
+	bl, err := buslogic.GetInstanceWithContext(ctx)
+	if err != nil {
+		return nil, status.Error(codes.Internal, "服务器内部错误[BusLogic]")
+	}
+	assignmentInfo, err := bl.GetAssignmentInfo(int(assignmentIDRequest.Id))
+	if err != nil {
+		return nil, status.Error(codes.Internal, err.Error())
+	}
+	return assignmentInfo, nil
+}
+```
+---
 ## New web framework and grpcweb
 - Element: Reused components across team |
 - grpcweb: leverage grpc and js generation |
 - Typescript? |
+- [Demo](http://crm.guazi-cloud.com/)
 
 ---
 ## Flexible and Dynamic Configuration by ETCD
@@ -79,7 +100,7 @@ Document: http://call-center-proto.guazi-cloud.com/#assignment.AssignmentInfo
 - Centralize config for multiple projects |
 - Web UI for review and update |
 - Awesome HA and performance |
-- Demo |
+- [ETCD UI Demo](http://e3w-staging.guazi-cloud.com/#/kv/?_k=9pmfzd) |
 ---
 ## BI Log Pipeline
 ### Background
@@ -133,6 +154,10 @@ gzavro.SaveAvro( &call.FactCallRecord{
 ```
 ---
 ## Async Job
+- Batch job is not HA and scalable |
+- It is not failure tolerant |
+- Hard to test
+---
 Start worker
 ```go
 worker.NewServer(mainConfig.Redis.Address, configs.DelayTaskQueue)
