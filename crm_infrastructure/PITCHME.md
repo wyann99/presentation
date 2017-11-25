@@ -40,7 +40,8 @@ Dong Bin
 - Code generation to avoid human mistake |
 - Document automation and consistency |
 - Performance for bindwidth and marshal |
-![GRPC](crm_infrastructure/assets/grpc.svg)
+---
+![GRPC](crm_infrastructure/assets/grpc.jpg)
 ---
 ## Example
 ```protobuf
