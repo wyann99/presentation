@@ -7,7 +7,7 @@ Dong Bin
 - The code and infrastructure was not design well for maintain and extensibility
 ---
 ## Structure
-![Structure](annual-report/assets/structure.png)
+![Structure](crm_infrastructure/assets/structure.png)
 ---
 ## Console
 ![Console](annual-report/assets/console.png)
