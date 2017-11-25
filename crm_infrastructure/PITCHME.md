@@ -5,7 +5,9 @@ Dong Bin
 - The existing CRM has lots of efficiency and design issues
 - Each business department has built its own system, which is a waste
 - The code and infrastructure was not design well for maintain and extensibility
-
+---
+## Structure
+![Structure](annual-report/assets/structure.png)
 ---
 ## Console
 ![Console](annual-report/assets/console.png)
@@ -38,7 +40,7 @@ Dong Bin
 - Code generation to avoid human mistake |
 - Document automation and consistency |
 - Performance for bindwidth and marshal |
-
+![Structure](annual-report/assets/grpc.svg)
 ---
 ## Example
 ```protobuf
@@ -155,7 +157,7 @@ gzavro.SaveAvro( &call.FactCallRecord{
 ---
 ## Async Job
 - Batch job is not HA and scalable |
-- It is not failure tolerant |
+- Hard for failure tolerant |
 - Hard to test
 ---
 Start worker
@@ -176,8 +178,20 @@ signature := &tasks.Signature{
 worker.SendTask(signature)
 ```
 ---
+## New SQL API
+- New go-orm and squirrel
+```go
+ t.Exec(`UPDATE sale_clue_queue SET assignment_status = ?, result_type = ? WHERE id in (??)`, status, resultType, assignmentIDs)
+sqlObj := squirrel.Select("operator,count(1) as count").From("assignment").NotEq("operator", 0).Condition()
+query, args, err := sqlObj.GroupBy("operator").ToSql()
+```
+---
+## Kafka Stream
+- Realtime dashboard and data analysis
+- Monitor
+- Session and Window aggregation
+---
 ## Useful tools
 - gip
 - Code checking
 - Http test fixture
-- New go-orm and squirrel
